@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rt.rtplasma.activity.MainActivity">
+
+    <include layout="@layout/common_title"/>
+
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dividerColor" />
+    <!--底部的RadioGroup-->
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#11000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_home_selector"
+            android:text="首页"/>
+
+        <RadioButton
+            android:id="@+id/rb_run"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_run_selector"
+            android:text="行动"/>
+
+        <RadioButton
+            android:id="@+id/rb_discover"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_discover_selector"
+            android:text="发现" />
+
+        <RadioButton
+            android:id="@+id/rb_me"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_me_selector"
+            android:text="我" />
+
+    </RadioGroup>
+</LinearLayout>
