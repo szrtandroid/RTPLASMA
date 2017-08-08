@@ -1,11 +1,19 @@
 package com.rt.rtplasma.constants;
 
+import com.rt.rtplasma.utils.LogUtils;
+
 /**
  * Created by RT3
  * on 2017/8/1.
  */
 
 public class Constants {
+
+    /**
+     * LogUtils.LEVEL_ALL  打开显示所有的日志
+     * LogUtils.LEVEL_OFF  关闭隐藏所有的日志
+     */
+    public static final int DEBUGLEVEL = LogUtils.LEVEL_ALL;
 
     public static final String BASE_URL = "http://112.92.40.173";
 
@@ -63,5 +71,10 @@ public class Constants {
     public static final String MONTH_COLLECT_PLASMA = BASE_URL + "/wxPlasma.do?method=findPlasmaMonthCount";
 
 
+
+
 //    public static final String URL="http://112.92.40.173/wxPlasma.do?method=findPlasmaRank";
+
+    public static final String PICTURE_URL="http://news-at.zhihu.com/api/4/news/latest";
+
 }

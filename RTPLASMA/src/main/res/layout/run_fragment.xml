@@ -3,12 +3,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_run"
         android:layout_width="match_parent"
-        android:text="行动"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

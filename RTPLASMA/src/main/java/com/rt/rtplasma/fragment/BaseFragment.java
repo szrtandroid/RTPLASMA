@@ -11,6 +11,7 @@ import com.rt.rtplasma.activity.BaseActivity;
 import com.rt.rtplasma.interfaces.IUIOperaction;
 
 import butterknife.ButterKnife;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Administrator on 2017/1/4.
@@ -20,6 +21,7 @@ public abstract class BaseFragment extends Fragment implements IUIOperaction {
    
     public BaseActivity mActivity;
     public View mRoot;
+    public OkHttpClient client;
 
     @Override
     public void onAttach(Activity activity) {
@@ -34,6 +36,7 @@ public abstract class BaseFragment extends Fragment implements IUIOperaction {
         if (mRoot == null) {
             mRoot = View.inflate(mActivity, getLayoutResId(), null);
             ButterKnife.bind(this, mRoot);
+            client = new OkHttpClient();
             initView();
             initData();
             initListener();
