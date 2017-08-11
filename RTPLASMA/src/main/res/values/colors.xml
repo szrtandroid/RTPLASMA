@@ -25,4 +25,8 @@
 
     <color name="back_text_pressed">#D81E06</color>
 
+    <color name="transparent">#00000000</color>
+    <color name="gary">#898989</color>
+    <color name="darkgrey"> #999999</color>
+
 </resources>

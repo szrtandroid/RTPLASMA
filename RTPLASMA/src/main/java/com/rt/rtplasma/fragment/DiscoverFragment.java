@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 import com.rt.rtplasma.R;
 import com.rt.rtplasma.utils.WebViewManager;
@@ -21,6 +22,8 @@ public class DiscoverFragment extends BaseFragment {
 
     @Bind(R.id.webview)
     WebView mWebview;
+    @Bind(R.id.progressBar)
+    ProgressBar mProgressBar;
 
     @Override
     public int getLayoutResId() {
@@ -34,8 +37,8 @@ public class DiscoverFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        String url="http://www.baidu.com/";
-        WebViewManager.initWebView(mWebview,url,mActivity);
+        String url="http://e.shinow.com.cn/login.jsp";
+        WebViewManager.initWebView(mWebview,url,mActivity,mProgressBar);
     }
 
     @Override

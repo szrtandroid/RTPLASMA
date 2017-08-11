@@ -1,14 +1,22 @@
 package com.rt.rtplasma.activity;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.rt.rtplasma.interfaces.OnDialogClickListener;
 import com.rt.rtplasma.utils.ActivityManager;
 import com.rt.rtplasma.view.ConfirmDialog;
@@ -21,9 +29,12 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends FragmentActivity {
 
+    private SDKReceiver mReceiver;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
         ActivityManager.addActivity(this);
@@ -31,6 +42,18 @@ public abstract class BaseActivity extends FragmentActivity {
         initView();
         initData();
         initListener();
+
+        registerBaiD();
+    }
+
+    private void registerBaiD() {
+        // 注册 SDK 广播监听者
+        IntentFilter iFilter = new IntentFilter();
+        iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_OK);
+        iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
+        iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+        mReceiver = new SDKReceiver();
+        registerReceiver(mReceiver, iFilter);
     }
 
     protected void setBarState() {
@@ -40,9 +63,28 @@ public abstract class BaseActivity extends FragmentActivity {
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-}
+        }
     }
 
+    /**
+     * 构造广播监听类，监听 SDK key 验证以及网络异常广播
+     */
+    public class SDKReceiver extends BroadcastReceiver {
+
+        public void onReceive(Context context, Intent intent) {
+            String s = intent.getAction();
+            if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
+
+                Toast.makeText(context, "key 验证出错! 错误码,请在 AndroidManifest.xml 文件中检查 key 设置", Toast.LENGTH_SHORT).show();
+
+            } else if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_OK)) {
+
+                Toast.makeText(context, "key 验证成功! 功能可以正常使用", Toast.LENGTH_SHORT).show();
+            } else if (s.equals(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR)) {
+                Toast.makeText(context, "网络出错", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     /**
      * 返回activity界面的布局文件

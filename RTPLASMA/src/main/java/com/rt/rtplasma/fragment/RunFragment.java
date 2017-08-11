@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class RunFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-        recyclerviewRun.setLayoutManager(new LinearLayoutManager(mActivity));
+        recyclerviewRun.setLayoutManager(new StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL));
     }
 
     @Override

@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,7 +25,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity{
 
     @Bind(R.id.fl_main)
     FrameLayout flMain;
@@ -80,6 +82,7 @@ public class MainActivity extends BaseActivity {
         //设置默认选项
         rgMain.check(R.id.rb_home);
     }
+
 
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
